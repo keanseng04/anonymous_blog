@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <td style="width:20%"><b> Title </td>
+    <td style="width:50%"><b> Content </td>
+  </tr>
+
+    <tr>
+      <td><%= @post.title %></td>
+      <td><%= @post.content %></td>
+      <td><a href="/posts/<%=params[:id]%>/edit">Edit</a></td>
+      <td><a href="/posts/<%=params[:id]%>/delete">Delete</a></td>
+    </tr>
+
+</table>

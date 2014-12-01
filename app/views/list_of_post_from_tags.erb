@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <td style="width:20%"><b> Title </td>
+  </tr>
+
+  <%@posts.each do |p|%>
+    <tr>
+      <td><a href="/posts/<%=p.id%>"><%=p.title%></a></td>
+    </tr>
+  <%end%>
+
+</table>

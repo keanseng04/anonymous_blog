@@ -1,0 +1,8 @@
+
+<table>
+<%@tags.each do |t|%>
+    <tr>
+      <td><a href="/tags/<%=t.id%>"><%=t.tag_name%></a></td>
+    </tr>
+<%end%>
+</table>
