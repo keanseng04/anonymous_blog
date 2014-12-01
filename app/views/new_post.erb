@@ -1,7 +1,7 @@
-<form action="/posts/new/success" method = "post">
-  Title: <input type="text" name="title">
-  Content: <input type="text" name="content">
-  Tag: <input type="text" name="tag_name">
+<form action="/posts" method = "post">
+  Title: <input type="text" name="post[title]">
+  Content: <textarea type="text" name="post[content]" ></textarea>
+  Tag: <input type="text" name="tags">
   <input type="submit" value="ENTER">
 </form>
 

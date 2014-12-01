@@ -13,7 +13,7 @@
 
   <h2>List of posts:</h2>
   <table>
-    <%@posts.each do |p|%>
+    <% @posts.each do |p| %>
     <tr>
       <td><a href="/posts/<%=p.id%>"><%=p.title%></a></td>
     </tr>

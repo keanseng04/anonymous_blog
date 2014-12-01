@@ -7,16 +7,37 @@ get '/posts/:id' do
   erb :post_content
 end
 
-post '/posts/new/success' do
-  Post.create(title: params[:title], content: params[:content])
-  Tag.create(tag_name: params[:tag_name])
+post '/posts' do
+  #Find if the tag name already exists in the tags table
+  #If it is non existent, create the given tag on the tags table
+  #Else, store the given tag into a variable
+  #Create post from the forms given
+  #find and store both the id from the post table into the posts_tag table
 
-  current_post_id = Post.last.id
-  current_tag_id = Tag.last.id
 
-  PostsTag.create(post_id: current_post_id, tag_id: current_tag_id)
+  #find tag based on tag name and assign as variable
+  #create given tag if not found and assign as variable
+  #create post
+  #associate post to tag
 
-  erb :success
+  # post = Post.create(title: params[:title], content: params[:content])
+  post = Post.create(params[:post])
+
+  multiple_tags = params[:tags] #=> "fruits, tree, yummy, healthy"
+
+  arr = multiple_tags.split(',')
+  
+  arr.each do |x|
+    tag = Tag.find_by(tag_name: x.strip)
+    
+    if tag == nil
+      tag = Tag.create(tag_name: x.strip)
+    end
+
+    post.tags << tag
+  end
+
+  redirect "posts/#{post.id}"
 end
 
 
@@ -25,7 +46,7 @@ get '/posts/:id/edit' do
   erb :edit_post
 end
 
-post '/posts/:id/edit/success' do
+put '/posts/:id' do
   post = Post.find(params[:id])
   post.title = params[:title]
   post.content = params[:content]
@@ -33,8 +54,8 @@ post '/posts/:id/edit/success' do
   erb :success
 end
 
-get '/posts/:id/delete' do
+delete '/posts/:id' do
   post = Post.find(params[:id])
   post.destroy
-  erb :index
+  redirect '/'
 end
